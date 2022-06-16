@@ -1,144 +1,288 @@
+# Bioinformatics I. Basic commands
+June 2021
 
-# Bioinformatics 0: How to get your computer ready
-UPDATED September 2020
+ ###### tags: `MAE`, `basic commands` ---UPDATED June 2021
+ 
+ [TOC]
+ 
+You will find all you need in the MAE specific tutorial: https://jbpc.mbl.edu//unix-tutorial/MAE2020.html
 
- ###### tags: `MAE`, `terminal`, `filezilla`, `basic commands` ---
-[TOC]
-## MBL Wireless Network
-Find more about how to connect [here](https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#WiFi_Login)
-https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#WiFi_Login
-
-
-There are two wireless networks at the MBL, "MBL-GUEST" and "MBL-REGISTERED."  Life will be easier if you are on the registered network.  
-To register your computer choose MBL-REGISTERED from the wireless list and follow the instructions. Your username is your initials followed by the 5 digit number on the side of your MBL ID card. Your password is the same. E.g. if your name is Norman Pace and the your card has the number 12345 on the side then your login details are:
-
-username: np12345
-password: np12345
-
-You will probably need to restart your computer to complete the process.  If you run into any problems please let us know.
-
-## Software
-We will use software on MBL bioinformatic servers for most our data processing and analyses.  To interact with the servers you will need:
-1. A terminal to connect to the servers
-2. A program to transfer files from and to your computer
-
-What is a terminal? Find out [here](https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/)
-https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/
-![](https://i.imgur.com/drx87Fy.png)
+In this webpage we will just cover very simple comands and screen. Screen is a program that allows you to continue to run programs even if you close your terminal. Because many of the steps you will compute take hours, it is very handy!
 
 
-What is a file transfer program? Find out [here](https://en.wikipedia.org/wiki/FileZilla) 
-https://en.wikipedia.org/wiki/FileZilla
+## basic unix commands
+[cheatsheet!](https://drive.google.com/file/d/10Jvm8IyezDfp0PWnGIXVZTNhpNevToRc/view?usp=sharing)
+https://drive.google.com/file/d/10Jvm8IyezDfp0PWnGIXVZTNhpNevToRc/view?usp=sharing
 
-![](https://i.imgur.com/IreN1qr.png)
+mv, cp, ls, cd, rm... not familiar?
+Still not familiar? 
 
+In the [MAE tutorial](https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Step_4:_Intro-to-Unix_tutorial) you will find many commands that will be useful in this course. 
+https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Step_4:_Intro-to-Unix_tutorial
 
-## Install/Activate a terminal
-### mac
+Also, you can consult the bioinformatic lab I presentation [here](https://docs.google.com/presentation/d/14LhrA5ODxiwHsLnXhaL9AXO_G5t96mWLHeRwal56t24/edit?usp=sharing)
+https://docs.google.com/presentation/d/14LhrA5ODxiwHsLnXhaL9AXO_G5t96mWLHeRwal56t24/edit?usp=sharing
 
-A full terminal, compatible with unix system is pre installed. 
-You can find detailed instructions for Mac users [here](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac). 
-https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac
+## Very brief recap
+Let's open the terminal, and type 
 
-Useful shortcuts: to **copy and paste inside the terminal** use crt+shift+ c and crt+shift+ v
+```
+pwd
 
+```
+pwd -> print working directory
 
-### windows
+you can use this commando to check where you are!
 
-Windows does not have a native terminal. You need to activate or install it. You can find detailed instructions on how to install an ubuntu terminal in win 10 [here](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) .
-https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
+```
+ls
 
-Useful shortcuts: how to **copy & paste** in terminal in a ubuntu in windows OS. 
-By default it might be set to use the right buttom of the mouse to paste after copying. I would recomend setting the terminal to use the same shortcuts the other students would be using. To do this in the terminal app go to Properties -> Options -> Check on Ctrl+Shift+C/V as Copy/Paste -> Click Ok. 
+```
+what happened?
+This list all the objects in a folder
+ls -> list
 
+Now type
 
-### linux
-If you are running linux, you are probably pretty familiar with the terminal. If not, check [here](https://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it).
-https://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it
-
-To **copy and paste inside the terminal** use crt+shift+ c and crt+shift+ v
-
-## secure file transfer 
-You can use the scp command in the terminal to transfer files to and from your computer.  This can be fast and efficient, or slow and confusing depending on what you're doing.  
-You can find detailed info about transfering in the [MAE unix tutorial](https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Copying_files_between_your_computer_and_the_server) 
-https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Copying_files_between_your_computer_and_the_server
-
-It's worth installing a graphical interface that will let you move files around the way you're probably used to.  We recommend FileZilla. 
-
-### filezilla client
-Download the appropiate version of the program (**client version**) 
-
-[Win64bit](https://filezilla-project.org/download.php?platform=win64)
-[Win32bit](https://filezilla-project.org/download.php?platform=win32)
-
-[MAC OSX](https://filezilla-project.org/download.php?platform=osx)
-
-[linux64](https://filezilla-project.org/download.php?platform=linux64)
-[linux32](https://filezilla-project.org/download.php?platform=linux32)
-
-webpage: https://filezilla-project.org/
-
-## text editor (ATOM)
-Copying commands from Word or other sophisticated word processors to the terminal leads to all sorts of problems.  You'll want to use a simple text editor.
-One really nice text editor is Atom, which combines a folder based interface and text edition capabilities. 
-
-
-[Windows here](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-windows) 
-
-[IOS here](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-mac)
-
-[linux here](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-linux)
-
-
-Atom can be seamlessly integrated with the desktop version of [github](https://desktop.github.com/). Scripts and couments from this classe can also be found in Github, https://github.com/elperedo/Microbiomes-Across-Environments
-
-
-## Additional text editors.
-
-### windows 
-We will be using [Notepad](https://en.wikipedia.org/wiki/Microsoft_Notepad) a lot. 
-
-### mac 
-Mac's have [text edit](https://support.apple.com/guide/textedit/welcome/mac). Just follow the instructions [here](https://www.techjunkie.com/textedit-plain-text-mode/#:~:text=TextEdit%20opens%20a%20new%20document,in%20the%20TextEdit%20menu%20bar.) to make it plain text so that copying to the terminal goes smoothly.
-
-### linux
-I use the [text edit](www.gedit.org) from gedit. It is a small and lightweight text editor for the GNOME Desktop.
-
-
-## Documenting your project
-
-It is important to store your code, so that
-1. You (or anyone else) can repeat your analysis. 
-2. We can help you to troubleshoot any problem that you might encounter.
-
-This is part of your grading for this course. We will guide your through each analysis step, but we want you to document all the steps you took to arrive to your conclusions. 
-
-We **strongly encourage you not to use** Word (.docx) or other sophisticated word processing programs to save your code. These programs embed many additional lines of code that will be mis-interpreted by the terminal and the programs you will be using. Even "saving as" a text file may not remove all these symbols.
-:::success
-We recomend you to use a text editor or even websites such as this one, [HackMD](https://hackmd.io/) or [Github](https://github.com/)
-
-:::
-
-<!--- 
-## Connect to the MBL BPC computing server
-
-You will be connected to the class server. Each of you will we assigned a host [class.XX] and a password. The main purpose of each of you running in a different host is to prevent compiting for computing power. 
-
-Open the terminal and type 
+```
+mkdir newfolder
 
 ```
 
-ssh [username]@class.mbl.edu
-
-ssh [username]@class.[XX]
-password: type here
+and type
 
 ```
-![](https://i.imgur.com/Fw6eXJE.png)
+ls
+
+```
+mkdir -> make directory 
+
+Now let's navegate into the new directory
+
+```
+cd newfolder
+
+```
+cd -> change directory
+
+did it work?
+
+let's check it
+
+what would you use to know where are you?
 
 
-There are other ways of connecting, see here for more detail: https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Step_2:_Getting_Connected_Using_SSH
+.....
 
---->
+**tip** use the tab in your keyboard!
+
+this will fill up info for you so you dont have to type us much. if two files share a name, it will stop. type a little more and use the tab again. 
+
+:)
+
+**more tips!**
+select and use `crt+shift c` to copy text in the terminal
+use `crt+shift v` to paste in the terminal
+
+## how to make a text file in terminal
+type in terminal 
+
+```
+cat > fileName.txt
+
+```
+now write (or paste) in the terminal
+
+```
+ There are microbes everywhere. 
+ yes, in your keyboard too! 
+ 
+ :)
+ 
+```
+ press enter and crt +Z
+ 
+ Did it work?
+ 
+ use `ls` 
+ is the file there?
+ 
+ Now, is the text in the file?
+ 
+ Let's use head to check it. 
+ 
+ ``` 
+ head fileName.txt
+ 
+ ```
+ 
+ :)
+ 
+ 
+ ## now, let's remove the file
+ 
+ We use `rm`  -> remove to delete files and folder
+ 
+ ```
+ rm fileName.txt
+ 
+ ```
+ did it work?
+ 
+ how would you check it?
+ 
+ yes, lets use `ls`
+  
+ now, let's remove the folder
+ to navigate back to the previous folder use
+  
+ `cd ..`
+
+ use `ls` to check the folder objects. Can you see `newfolder`?
+
+ to remove a folder we will use 
+
+ ```
+ rm -fr newfolder
+
+ ```
+ The flag `-fr` forzes recurrent removal of objects within a folder ( so no need to eliminate all the files inside before hand)
+
+### listing files before removing (rm)
+
+A very useful thing is to use wildcards. 
+
+For example `*_test.txt will` identify any file finished in `_test.txt`
+
+If you want to remove multiple files you can use the wild card
+
+`rm *_test.txt`
+
+BUT!!
+ 
+Remember that `rm` will remove files **forever**. To check if you have the right list of files replace `rm` by `echo`. It will show you the list of files without removing them.
+```
+echo *_pass_1.fastq.gz
+echo *_pass_2.fastq.gz
+echo *_unpaired_*
+```
+
+### some tutorials
+
+This is the MAE specific Unix tutorial. 
+Always consult here if you have any doubt. 
+https://jbpc.mbl.edu//unix-tutorial/
+
+Others:
+http://www.ee.surrey.ac.uk/Teaching/Unix/ 
+
+https://www.doc.ic.ac.uk/~wjk/UnixIntro/ **#this one has exercises**
+
+For the project part of the couse you should be familiar with 
+
+mkdir (creates a directory)
+cd navigates to a directory
+ls list the the folders or files in a directory
+rm removes a file
+rm -rf removes a directory
+mv moves a file
+
+for all these commands,  if you have any doubts sbout how to use them, type the command + -h or --help . This will list the options of usage. 
+You don't need to remember the commands. There are many many tutorials and cheat sheets. 
+
+I like this [one](https://files.fosswire.com/2007/08/fwunixref.pdf) 
+https://files.fosswire.com/2007/08/fwunixref.pdf
+
+## screen
+
+This is probably the most important command you will learn today. Read all about the program [here ](https://kb.iu.edu/d/acuy)
+https://kb.iu.edu/d/acuy
+
+#### Creating and naming a screen session
+```
+screen -S sessionID
+```
+Screen  opens a protected window. This is important because many steps you will be running will run for a **really** long type. Using `screen` the processes won't die if you close the terminal or your computer. 
+You can give any name to a session (the sessionID would be any name you give e.g. qualitycheck) that is meaningful for identifying the screen session. So, if you open several, you can navigate to the desired one because they can be easily identified. 
+
+#### Deattaching from an screen session
+
+Use `crt+a` followed by `d` to deattach the terminal, that means to close the terminal screen window and return to regular terminal **without** ending the process that is running in the screened session. 
+
+#### Returning to an screen session 
+
+```
+screen -r 
+
+```
+If there is just one screen session open, this command will reconnect you to it. If several screen windows are open, there will be a list select the one of interest 
+
+> [eperedo@minnie taxonomy_databases]$ screen -r
+> There are several suitable screens on:
+> 	59479.tax	(Detached)
+> 	65328.database	(Attached)
+> 	45734.testscreen.FRot	(Detached)
+> 
+to return to an specific session, use the sessionID listed by `screen -r`
+
+```
+screen -r sessionID
+
+```
+
+#### Returning to an attached screen session 
+If a session appears as Attached when the sessions are listed, use `screen -x sessionID`
+
+```
+screen -x 65328.database
+
+```
+
+
+#### Keeping a log of an screen session
+Most times it is useful to record what you type
+
+there are two options. 
+1. when you create the session use the flag -L (log)
+```
+screen -L -S test
+
+```
+This is a very easy system that will log #ALL# from begining to end. It will create a logfile "output.0" int he folder where you first launched the screen session. **Only one big caveat: If you open another screen in the same folder it woill overwrite your file**
+
+2. generate a file to log in specific parts of the session
+Once in a screened session type `crt+a` release and press `:` a line of text will appear on the botton of the terminal
+Type `logfile NAMEforlog.txt` press enter (twice)
+
+
+ If you want to log something, press 
+ `crt+a` followed by `H`  in the botton of the terminal a line saying creating file NAMEforlog.txt will appear, press enter
+ 
+all you type now will be recorded. 
+to stop recording type again 
+`crt+a` followed by `H`
+Recording will stop
+
+**supercool!**
+if you use `crt+a` followed by `H` it will append (instead of overwrite!) to the log file. 
+To stop, once again  `crt+a` followed by `H`
+
+#### Finishing an screen session
+type **exit** to close the screen session. 
+
+
+#### How to kill an screen session 
+
+Sometimes, it happens. Things go wrong. 
+From inside the screen: typing `ctrl+a` followed by `k`
+```
+screen -X -S sessionID kill
+```
+
+kill all screen sessions: 
+
+```
+screen -ls | grep '(Detached)' | awk 'sys {screen -S $1 -X quit}'
+```
 
 
