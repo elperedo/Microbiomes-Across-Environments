@@ -1,4 +1,4 @@
-# Bioinformatics II.  "Fastq reads. Evaluating quality"
+# Bioinformatics II.  Fastq reads. Evaluating quality
 
 UpdatedAugust 2021
 
@@ -27,14 +27,12 @@ check here: [screen instructions](https://hackmd.io/Y3AabwWoTpObumF4eYb37g?view#
 
 navigate to the folder where you will run your analysis
 
-1. to give a name to a screen session `screen -S sessionID`
-2. List screens? `screen -r`
-3. to connect to screen session `screen -r sessionID`
-4. generate a file to log in specific parts of the session
-Once in a screened session type `crt+a` release and press `:` a line of text will appear on the botton of the terminal Type `logfile NAMEforlog.txt` press enter (twice).  If you want to log something, press `crt+a` followed by `h`  in the botton of the terminal a line saying creating file NAMEforlog.txt will appear, press enter all you type now will be recorded. To stop recording type again `crt+a` followed by `h`. Recording will stop. **Supercool!** if you use `crt+a` followed by `h` it will append (instead of overwrite!) to the log file. To stop, once again  `crt+a` followed by `h`
+1. to give a name to a screen session and create a logfile `screen -S *sessionID* -L`. A file called screenlog0 will appear. to keep record of what log correspond to what session, launch the screen session on the folder where you are working. 
+3. List screens? `screen -r`
 4. close screen `crt+a` release and press `d`
-5. kill screen `crt+a` release and press `k`
+5. to re-connect to screen session `screen -r sessionID`
 6. finished? type `exit`
+7. DO YOU NEED TO KILL THAT SCREEN? kill screen `crt+a` release and press `k`. a line will appear on the botton asking you if you really want to kill the screen, say yes! 
 
 
 ## Types of sequence files
@@ -185,7 +183,7 @@ cd SRAdump_PRJNA610907
 navigate to the folder.
 we will use fastq-dump to download the data.
 
-We have already check the data characteristics. 
+We have already checked the data characteristics. 
 
 This is very important because we need to know how to process them afterwars. This is a set of samples sequenced using [paired-end reads](https://www.illumina.com/science/technology/next-generation-sequencing/plan-experiments/paired-end-vs-single-read.html)
 so we want to separate each read in a separate file 1/ and 2/. To do so, we will use the split files flag. we will also skip any technical reads that might be present)
@@ -208,7 +206,7 @@ https://ncbi.github.io/sra-tools/fastq-dump.html
 
 check that you are in the right directory using `pwd`
 
-~/saltmarsh/SRAdump_PRJNA610907
+is it `~/saltmarsh/SRAdump_PRJNA610907`?
 
 Now, let's download some files!
 Type
@@ -219,7 +217,6 @@ Use `ls` to check if the file is present.
 
 ```
 vdb-validate ~/saltmarsh/SRAdump_PRJNA610907/SRR11277344/SRR11277344.sra
-
 
 ```
 You can use `**vdb-validate**` for checking the download
@@ -248,8 +245,8 @@ You can use `**vdb-validate**` for checking the download
 
 ```
 fastq-dump  \
-    -W -\
-    -split-files \
+    -W \
+    --split-files \
     --read-filter pass \
     --gzip \
     --skip-technical \
@@ -281,6 +278,7 @@ SRR11277344_pass_1.fastq.gz  SRR11277344_pass_2.fastq.gz
 
 ### fastqc
 
+
 Now let’s have a look to the quality of the reads. We will be using `fastqc`, first have a look to the options of the program using the help type `fastqc -h`. Then, have a look to the data in the read 1 & 2.
 ```
 fastqc SRR11277344_pass_1.fastq.gz SRR11277344_pass_2.fastq.gz 
@@ -289,6 +287,12 @@ fastqc SRR11277344_pass_1.fastq.gz SRR11277344_pass_2.fastq.gz
 List the files to check that all run properly `ls` and you can use filezilla to transfer the report file .html to your computer. 
 
 Open the .html (using your web browser) and have a look to the report.
+:::info
+For visualizing the output files, you will need to transfer them to your computer. You can use filezilla or scp in the terminal. 
+
+Check here, in the course specific tutorial
+https://jbpc.mbl.edu/unix-tutorial/MAE2020.html#Copying_files_between_your_computer_and_the_server
+:::
 
 ![](https://i.imgur.com/wAMKkIu.png)
  
@@ -327,7 +331,7 @@ To avoid having to do this one by one we will create a **for loop**. [more here]
 All we need is a text file containing the list of files you want to process. Here we will cover an example, using the same dataset as before. In the terminal, get out of the current folder and make a new one.
 
 do you remember the file SRR_Acc_List_PRJNA610907.txt you downloaded?
-copy it to the folder. (you can fdrag and drop using filezilla or youcan create a file using the terminal)We will start at 9. 
+copy it to the folder. (you can drag and drop using filezilla or youcan create a file using the terminal). 
 
 ```
 cat > SRR_Acc_List_PRJNA610907.txt
@@ -336,9 +340,14 @@ this creates the file, let's populate it. We will only use 29 samples of this da
 
 Enter your document's text. open the txt file in your computer, select all (crt +a) and copy (crt +c) now copy all the text in the terminal **(crt + shift +v)** note: copy and past require crt +shift. 
 ```
+SRR11277344
+SRR11277345
+SRR11277346
+SRR11277347
 SRR11277348
 SRR11277349
 SRR11277350
+SRR11277351
 SRR11277352
 SRR11277353
 SRR11277354
@@ -349,6 +358,7 @@ SRR11277358
 SRR11277359
 SRR11277360
 SRR11277361
+SRR11277362
 SRR11277363
 SRR11277364
 SRR11277365
@@ -359,11 +369,30 @@ SRR11277369
 SRR11277370
 SRR11277371
 SRR11277372
+SRR11277373
 SRR11277374
 SRR11277375
 SRR11277376
-
-
+SRR11277377
+SRR11277378
+SRR11277379
+SRR11277380
+SRR11277381
+SRR11277382
+SRR11277383
+SRR11277384
+SRR11277385
+SRR11277386
+SRR11277387
+SRR11277388
+SRR11277389
+SRR11277390
+SRR11277391
+SRR11277392
+SRR11277393
+SRR11277394
+SRR11277395
+SRR11277396
 ```
 #Press enter to insert and end line.exit using Ctrl + Z
 and check!
@@ -384,47 +413,51 @@ check that you are in the right directory
 
 ```
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
-    do prefetch -f yes ${file}; \
+    do prefetch -f yes ${line}; \
     done
 
 ```
 ```
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
-    do vdb-validate ~/saltmarsh/SRAdump_PRJNA610907/${file}/${file}.sra; \
+    do vdb-validate ${line}/${line}.sra; \
     done
 ```
 
 could you write the rest?
 
-Or check below for the loop for each of the four steps. 
+
+
+
+Or you can check below. 
 
 
 
 ```
-#download
+#download-- we already did this
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
-    do prefetch -f yes ${file}; \
+    do prefetch -f yes ${line}; \
     done
 
-#validate
+#validate-- we already did this
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
-    do vdb-validate ~/saltmarsh/SRAdump_PRJNA610907/${file}/${file}.sra; \
+    do vdb-validate ${line}/${line}.sra; \
     done
 
 #uncompress
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
     do fastq-dump \
+    -W \
     --split-files \
     --read-filter pass \
     --gzip \
     --skip-technical \
-    ~/saltmarsh/SRAdump_PRJNA610907/${file}/${file}.sra; \
+   ${line}/${line}.sra; \
     done
 
 #check quality
 
 for line in `cat SRR_Acc_List_PRJNA610907.txt`; \
-    do fastqc ${file}_pass_1.fastq.gz ${file}_pass_2.fastq.gz; 
+    do fastqc ${line}_pass_1.fastq.gz ${line}_pass_2.fastq.gz; 
     done
 
 ```
